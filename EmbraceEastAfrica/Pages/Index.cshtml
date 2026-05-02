@@ -1,0 +1,90 @@
+﻿@page
+@model EmbraceEastAfrica.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+
+@* Show welcome message after sign in *@
+@if (TempData["WelcomeMessage"] is string welcome)
+{
+  <div class="alert-success" style="text-align:center;padding:14px;margin:0;">✓ @welcome</div>
+}
+
+<!-- HERO BANNER -->
+<section class="hero">
+  <h1>Welcome to Embrace East Africa</h1>
+  <p>Explore the rich cultures, breathtaking landscapes, and vibrant opportunities across the seven East African Community member states. One region, endless wonders.</p>
+</section>
+
+<!-- VISION, MISSION, CORE VALUES -->
+<section class="vmc-section">
+  <div class="vmc-card">
+    <h3>🌍 Our Vision</h3>
+    <p>A prosperous, competitive, secure, stable and politically united East Africa — a region where citizens enjoy a high quality of life.</p>
+  </div>
+  <div class="vmc-card">
+    <h3>🎯 Our Mission</h3>
+    <p>To widen and deepen economic, political, social and cultural integration in order to improve the quality of life of the people of East Africa through increased competitiveness, value added production, trade and investments.</p>
+  </div>
+  <div class="vmc-card">
+    <h3>⭐ Core Values</h3>
+    <ul>
+      <li>Unity &amp; Solidarity</li>
+      <li>Mutual Trust &amp; Respect</li>
+      <li>Accountability &amp; Transparency</li>
+      <li>Equity &amp; Equal Opportunity</li>
+      <li>People-Centred Development</li>
+    </ul>
+  </div>
+</section>
+
+<!-- EAC MAP -->
+<section class="map-section">
+  <h2>The East African Community Region</h2>
+  <p class="map-subtitle">Spanning from the Indian Ocean to the Atlantic Ocean</p>
+  <img src="~/images/map/New_EAC_map.png" alt="East African Community Map"/>
+</section>
+
+<!-- FLAGS SECTION -->
+<section class="flags-section">
+  <h2>EAC Member States</h2>
+  <p class="section-subtitle">Click on any country flag to explore its culture, history, and attractions</p>
+  <div class="flags-grid">
+    <div class="flag-card">
+      <img src="~/images/flags/Burundi.png" alt="Flag of Burundi"/>
+      <div class="country-name">Burundi</div>
+      <a href="/burundi.html" class="btn-info">Click For Info</a>
+    </div>
+    <div class="flag-card">
+      <img src="~/images/flags/DRC.png" alt="Flag of DR Congo"/>
+      <div class="country-name">DR Congo</div>
+      <a href="/drc.html" class="btn-info">Click For Info</a>
+    </div>
+    <div class="flag-card">
+      <img src="~/images/flags/Kenya.png" alt="Flag of Kenya"/>
+      <div class="country-name">Kenya</div>
+      <a href="/kenya.html" class="btn-info">Click For Info</a>
+    </div>
+    <div class="flag-card">
+      <img src="~/images/flags/Rwanda.png" alt="Flag of Rwanda"/>
+      <div class="country-name">Rwanda</div>
+      <a href="/rwanda.html" class="btn-info">Click For Info</a>
+    </div>
+    <div class="flag-card">
+      <img src="~/images/flags/South Sundan.png" alt="Flag of South Sudan"/>
+      <div class="country-name">South Sudan</div>
+      <a href="/southsudan.html" class="btn-info">Click For Info</a>
+    </div>
+    <div class="flag-card">
+      <img src="~/images/flags/Tanzania.webp" alt="Flag of Tanzania"/>
+      <div class="country-name">Tanzania</div>
+      <a href="/tanzania.html" class="btn-info">Click For Info</a>
+    </div>
+    <div class="flag-card">
+      <img src="~/images/flags/Uganda.png" alt="Flag of Uganda"/>
+      <div class="country-name">Uganda</div>
+      <a href="/uganda.html" class="btn-info">Click For Info</a>
+    </div>
+  </div>
+</section>

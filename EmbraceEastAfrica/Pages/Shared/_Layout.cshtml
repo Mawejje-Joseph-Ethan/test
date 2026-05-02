@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@ViewData["Title"] – Embrace East Africa</title>
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+  <link rel="stylesheet" href="~/EmbraceEastAfrica.styles.css" asp-append-version="true"/>
+</head>
+<body>
+
+  <!-- HEADER WITH LOGO -->
+  <header>
+    <div class="logo-wrap">
+      <img src="~/images/logo/LOGO.jpeg" alt="Embrace East Africa Logo"/>
+    </div>
+    <div class="header-text">
+      <div class="site-title">Embrace East Africa</div>
+      <div class="site-tagline">Discover the Beauty, Culture &amp; Opportunities of East Africa</div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION RIBBON -->
+  <nav>
+    <a href="/Index">Home</a>
+    <a href="/Workshops">Workshops</a>
+    <a href="/Gallery">Gallery</a>
+    <a href="/Services">Services</a>
+    <a href="/News">News &amp; Media</a>
+    <a href="/About">About Us</a>
+    <a href="/SignIn" class="@(ViewData["Page"]?.ToString() == "signin" ? "active" : "")">Sign In</a>
+    <a href="/SignUp" class="@(ViewData["Page"]?.ToString() == "signup" ? "active" : "")">Sign Up</a>
+  </nav>
+
+  <!-- PAGE CONTENT -->
+  <main>
+    @RenderBody()
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Embrace East Africa</div>
+    <p>Showcasing the beauty, culture, and opportunities of the East African Community</p>
+    <div class="footer-links">
+      <a href="/Index">Home</a>
+      <a href="/About">About Us</a>
+      <a href="/Gallery">Gallery</a>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Embrace East Africa. All Rights Reserved.<br/>
+      [Student Name 1] – [Reg. No.] &nbsp;|&nbsp; [Student Name 2] – [Reg. No.]
+    </div>
+  </footer>
+
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

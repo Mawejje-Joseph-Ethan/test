@@ -1,0 +1,120 @@
+@page
+@model EmbraceEastAfrica.Pages.SignUpPageModel
+@{
+    ViewData["Title"] = "Sign Up";
+    ViewData["Page"] = "signup";
+    Layout = "_Layout";
+}
+
+<div class="page-hero">
+  <h1>Create an Account</h1>
+  <p>Join the Embrace East Africa community today</p>
+</div>
+
+<div class="form-container">
+  <h2>Sign Up</h2>
+  <p class="form-subtitle">Fill in the details below to get started</p>
+
+  @* Show server-side error *@
+  @if (Model.ErrorMessage != null)
+  {
+    <div class="alert-error">⚠ @Model.ErrorMessage</div>
+  }
+
+  <form method="post" asp-page="/SignUp" novalidate>
+    @* Anti-forgery token — CSRF protection *@
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+      <label asp-for="Input.FullName">Full Name</label>
+      <input asp-for="Input.FullName"
+             type="text"
+             placeholder="Your full name"
+             autocomplete="name"
+             class="@(ViewData.ModelState["Input.FullName"]?.Errors.Count > 0 ? "input-error" : "")"/>
+      <span asp-validation-for="Input.FullName" class="validation-error"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Input.Username">Username</label>
+      <input asp-for="Input.Username"
+             type="text"
+             placeholder="Choose a username"
+             autocomplete="username"
+             class="@(ViewData.ModelState["Input.Username"]?.Errors.Count > 0 ? "input-error" : "")"/>
+      <span asp-validation-for="Input.Username" class="validation-error"></span>
+      <div class="hint">Letters, numbers, and underscores only</div>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Input.Email">Email Address</label>
+      <input asp-for="Input.Email"
+             type="email"
+             placeholder="you@example.com"
+             autocomplete="email"
+             class="@(ViewData.ModelState["Input.Email"]?.Errors.Count > 0 ? "input-error" : "")"/>
+      <span asp-validation-for="Input.Email" class="validation-error"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Input.Password">Password</label>
+      <input asp-for="Input.Password"
+             type="password"
+             id="password"
+             placeholder="Create a strong password"
+             autocomplete="new-password"
+             class="@(ViewData.ModelState["Input.Password"]?.Errors.Count > 0 ? "input-error" : "")"/>
+      <div class="password-strength" id="strengthBar"></div>
+      <div class="hint" id="strengthText">Min 8 chars, include uppercase, number &amp; special character</div>
+      <span asp-validation-for="Input.Password" class="validation-error"></span>
+    </div>
+
+    <div class="form-group">
+      <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+      <input asp-for="Input.ConfirmPassword"
+             type="password"
+             placeholder="Repeat your password"
+             autocomplete="new-password"
+             class="@(ViewData.ModelState["Input.ConfirmPassword"]?.Errors.Count > 0 ? "input-error" : "")"/>
+      <span asp-validation-for="Input.ConfirmPassword" class="validation-error"></span>
+    </div>
+
+    <button type="submit" class="btn-submit">Create Account</button>
+  </form>
+
+  <div class="form-footer">
+    Already have an account? <a href="/SignIn">Sign In here</a>
+  </div>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+  <script>
+    // Client-side password strength indicator
+    document.getElementById('password').addEventListener('input', function () {
+      const val = this.value;
+      const bar = document.getElementById('strengthBar');
+      const text = document.getElementById('strengthText');
+      let strength = 0;
+      if (val.length >= 8) strength++;
+      if (/[A-Z]/.test(val)) strength++;
+      if (/[0-9]/.test(val)) strength++;
+      if (/[^a-zA-Z0-9]/.test(val)) strength++;
+      const colors = ['#e74c3c', '#e67e22', '#f1c40f', '#27ae60'];
+      const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+      const widths = ['25%', '50%', '75%', '100%'];
+      if (val.length === 0) {
+        bar.style.width = '0';
+        text.textContent = 'Min 8 chars, include uppercase, number & special character';
+        text.style.color = '#888';
+      } else {
+        const idx = Math.min(strength - 1, 3);
+        bar.style.background = colors[idx];
+        bar.style.width = widths[idx];
+        bar.style.height = '5px';
+        text.textContent = 'Password strength: ' + labels[idx];
+        text.style.color = colors[idx];
+      }
+    });
+  </script>
+}
